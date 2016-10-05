@@ -26,8 +26,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		
 		document.execCommand('copy');
 		
-		var action_url = "javascript:window.alert('" + _html + "');";
-   		chrome.tabs.update(tab.id, {url: action_url});
+		// var action_url = "javascript:window.alert('" + _html + "');";
+   		// chrome.tabs.update(tab.id, {url: action_url});
 	
 	});
   
