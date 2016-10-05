@@ -1,18 +1,23 @@
 {
 	"manifest_version": 2,
 	"name": "Tabs2List",
-	"version": "1.0.0",
-	
+	"version": "1.0.1",
 	"description": "Convert URLs of open tabs to html unordered list of links.",
 
 	"background": {
 		"scripts": ["background.js"]
 	},
 	
+	"options_ui": {
+		"page": "options.html",
+		"chrome_style": true
+  	},
+	
+	
 	 "browser_action": {
-      "default_title": "Tabs2List",
-      "default_icon": {
-      		"19": "images/tab2list_19x19.png",
+		"default_title": "Tabs2List",
+    	"default_icon": {
+			"19": "images/tab2list_19x19.png",
       		"38": "images/tab2list_38x38.png"
     	}
   	},
@@ -24,7 +29,11 @@
     },
 	
 	"permissions": [
-	  "tabs", "clipboardWrite", "http://*/*", "https://*/*"
+	  "tabs", 
+	  "storage", 
+	  "clipboardWrite", 
+	  "http://*/*", 
+	  "https://*/*"
 	]
 	
   }

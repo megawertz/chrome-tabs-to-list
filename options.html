@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Test Extension Options</title>
+  <style>
+  
+  	body { padding: 1em; }
+      
+    label {
+    	padding:0;
+    	font-size:1em;
+    	font-weight:bold;
+    	display:block;
+    }
+    
+    .options {
+    	margin-bottom:1em;
+    }
+    
+    .sampletext {
+    	color:#6C6C6C;
+    	margin-bottom:.4em;
+    	display:block;
+    	font-weight:bold;
+    }
+
+    #status {
+    	font-style:italic;
+    	color:#6C6C6C;
+    }
+        
+  </style>
+</head>
+<body>
+<script src="options.js"></script>
+<div class="options">
+	<label for="list_type">List Type</label>
+	<select id="list_type">
+		<option value="ordered">Ordered</option>
+		<option value="unordered">Unordered</option>
+	</select>
+</div>
+
+<div class="options">
+	<label for="clipboard_format">Clipboard Format</label>
+	<select id="clipboard_format">
+		<option value="html">HTML</option>
+		<option value="text">Plain Text</option>
+	</select>
+</div>
+
+<div class="options">
+	<label for="list_item_format">List Item Format</label>
+	<span class="sampletext"></span>
+	<select id="list_item_format">
+		<option value="title">Tab Title Only</option>
+		<option value="url">Url Only</option>
+		<option value="all">Tab Title &amp; Url</option>
+	</select>
+</div>
+
+<div id="status"></div>
+<button id="saveoptions">Save</button>
+
+
+
+</body>
+</html>
