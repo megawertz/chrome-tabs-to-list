@@ -13,11 +13,21 @@
     	display:block;
     }
     
+    hr {
+    	margin-top:1.7em;
+    }
+    
     .options {
     	margin-bottom:1em;
     }
     
+    #clipboard_feedback {
+    	margin-bottom:.4em;
+    }
+    
     #sampletext {
+    	background-color:#F3F3F3;
+    	padding:.25em;
     	color:#6C6C6C;
     	margin-bottom:.4em;
     	display:block;
@@ -27,25 +37,28 @@
     #status {
     	font-style:italic;
     	color:#6C6C6C;
+    	margin-bottom:.4em;
     }
         
   </style>
 </head>
 <body>
 <script src="options.js"></script>
+
 <div class="options">
-	<label for="list_type">List Type</label>
-	<select id="list_type">
-		<option value="ordered">Ordered</option>
-		<option value="unordered">Unordered</option>
+	<label for="list_type_language">List Type</label>
+	<select id="list_type_language">
+		<option value="html">HTML</option>
+		<option value="markdown">Markdown</option>
+		<option value="plain">Plain Text</option>
 	</select>
 </div>
 
 <div class="options">
-	<label for="clipboard_format">Clipboard Format</label>
-	<select id="clipboard_format">
-		<option value="html">HTML</option>
-		<option value="text">Plain Text</option>
+	<label for="list_order">List Order</label>
+	<select id="list_order">
+		<option value="ordered">Ordered</option>
+		<option value="unordered">Unordered</option>
 	</select>
 </div>
 
@@ -59,9 +72,24 @@
 	</select>
 </div>
 
+<div class="options">
+	<label for="clipboard_format">Clipboard Format</label>
+	<div id="clipboard_feedback"></div>
+	<select id="clipboard_format">
+		<option value="html" id="clipboard_format_html" >HTML</option>
+		<option value="text" id="clipboard_format_text">Plain Text</option>
+	</select>
+</div>
+
 <div id="status"></div>
 
 <button id="saveoptions">Save</button>
+
+<hr>
+
+<p>
+	Created by <a href="http://megawertz.com/software-projects/">megawertz</a> &copy; 2016
+</p>
 
 </body>
 </html>
