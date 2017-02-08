@@ -17,12 +17,14 @@ function save_options() {
 	var m_list_order = document.getElementById('list_order').value;
 	var m_clipboard_format = document.getElementById('clipboard_format').value;
 	var m_list_item_format = document.getElementById('list_item_format').value;
+	var m_domain_filter = document.getElementById('domain_filter').value;
 
 	chrome.storage.sync.set({
 		list_type_language: m_list_type_language,
 		list_order: m_list_order,
 		clipboard_format: m_clipboard_format,
-		list_item_format:m_list_item_format
+		list_item_format: m_list_item_format,
+		domain_filter: m_domain_filter
 	  }, function() {
 		// Update status to let user know options were saved.
 		var status = document.getElementById('status');
@@ -41,7 +43,8 @@ function restore_options() {
 	    list_type_language: 'html',
 		list_order: 'unordered',
 		clipboard_format: 'html',
-		list_item_format:'all'
+		list_item_format: 'all',
+		domain_filter: ''
 	  }, function(items) {
 	  	
 	  	var status = document.getElementById('status');
@@ -55,6 +58,7 @@ function restore_options() {
 		document.getElementById('clipboard_format').value = items.clipboard_format;
 		document.getElementById('list_item_format').value = items.list_item_format;
 		document.getElementById('list_type_language').value = items.list_type_language;
+		document.getElementById('domain_filter').value = items.domain_filter;
 		
 		update_list_format_sampletext()		
 

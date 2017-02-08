@@ -44,12 +44,14 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	 	list_type_language: 'html',
 		list_order: 'unordered',
 		clipboard_format: 'html',
-		list_item_format:'all'
+		list_item_format:'all',
+		domain_filter: ''
 	  }, function(items) {
 	  
 		var list_order = items.list_order;
 		var list_item_format = items.list_item_format;
-		var list_type_language = items.list_type_language;		
+		var list_type_language = items.list_type_language;
+		var domain_filter = items.domain_filter;	
 		_mime = (items.clipboard_format === 'html') ? "text/html" : "text/plain";
 		_html = "";
 
@@ -76,17 +78,27 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		    	template = active_templates[2];
 		    }
 		    
+		    // Filter out unwanted domains/patterns
+		    // How to do this without inner loop?
+		    var dfl = domain_filter.split(",");
+			var filtered_tabs = tabs.filter(function (el) {
+    		  	for(var i = 0 ; i < dfl.length ; i++) {
+    		  		if(el.url.toLowerCase().indexOf(dfl[i].toLowerCase().trim()) > -1) {
+    		  			return false;
+    				}
+    		   	}
+    		   	return true; });
+
 		    // Loop through and process template
-			for(var i = 0 ; i < tabs.length ; i++) {
-				
+			for(var i = 0 ; i < filtered_tabs.length ; i++) {
+
 				if(list_type_language !== 'html' && list_order === 'ordered') {
 					_html +=  (i+1) + ". ";
 			} else if(list_type_language === 'markdown' && list_order === 'unordered') {
 					_html +=  "* ";
-			
 			}
-				var temp = template.replace(/{{URL}}/gi,tabs[i].url);
-				var temp = temp.replace(/{{TITLE}}/gi,tabs[i].title);
+				var temp = template.replace(/{{URL}}/gi,filtered_tabs[i].url);
+				var temp = temp.replace(/{{TITLE}}/gi,filtered_tabs[i].title);
 				_html += temp;
 			}		
 			
@@ -113,4 +125,4 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 });
 
 // TODO: General
-// Add a domain filter so you can exclude items from the list
+// Add custom format using template patterns
